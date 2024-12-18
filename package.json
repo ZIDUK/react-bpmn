@@ -5,6 +5,8 @@
   "type": "module",
   "homepage": "https://ziduk.github.io/react-bpmn",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy":"gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
