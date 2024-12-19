@@ -1,29 +1,3 @@
-/*import ReactBpmn from "react-bpmn";
-
-export const BpmnJs = (props) => {
-  const onShown = () => {
-    console.log("diagram shown");
-  };
-
-  const onLoading = () => {
-    console.log("diagram loading");
-  };
-
-  const onError = (err) => {
-    console.log("failed to show diagram");
-  };
-
-  return (
-    <ReactBpmn
-      url="https://cdn.statically.io/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn"
-      onShown={onShown}
-      onLoading={onLoading}
-      onError={onError}
-    />
-  );
-};
-*/
-
 import React, { useEffect, useRef } from "react";
 import Modeler from "bpmn-js/lib/Modeler";
 
@@ -33,17 +7,39 @@ import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
 import TokenSimulationModule from "bpmn-js-token-simulation";
 import "bpmn-js-token-simulation/assets/css/bpmn-js-token-simulation.css";
 
+import {
+  BpmnPropertiesPanelModule,
+  BpmnPropertiesProviderModule,
+} from "bpmn-js-properties-panel";
+import "bpmn-js-properties-panel/dist/assets/properties-panel.css";
+
+import BpmnColorPickerModule from "bpmn-js-color-picker";
+import "bpmn-js-color-picker/colors/color-picker.css";
+import "bpmn-js/dist/assets/diagram-js.css";
+import "bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css";
+
+import "./styles.css";
+
 const diagram =
   "https://cdn.statically.io/gh/bpmn-io/bpmn-js-examples/dfceecba/starter/diagram.bpmn";
 
 export const BpmnJs = () => {
   const containerRef = useRef(null);
+  const propertiesPanelRef = useRef(null);
 
   useEffect(() => {
     // Crear el modelador BPMN
     const modeler = new Modeler({
       container: containerRef.current,
-      additionalModules: [TokenSimulationModule],
+      propertiesPanel: {
+        parent: propertiesPanelRef.current, // Donde se renderiza el panel de propiedades
+      },
+      additionalModules: [
+        TokenSimulationModule,
+        BpmnPropertiesPanelModule,
+        BpmnPropertiesProviderModule,
+        BpmnColorPickerModule,
+      ],
       keyboard: {
         bindTo: window,
       },
@@ -73,5 +69,12 @@ export const BpmnJs = () => {
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: "100%", height: "500px" }} />;
+  return (
+    <div style={{ display: "flex", height: "500px" }}>
+      {/* Contenedor del canvas */}
+      <div ref={containerRef} className="diagram-container" />
+      {/* Contenedor del panel de propiedades 
+      <div ref={propertiesPanelRef} className="properties-panel" />*/}
+    </div>
+  );
 };

@@ -13,7 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "1.7.0",
+    "@bpmn-io/properties-panel": "^1.8.2",
     "@material-ui/core": "^4.11.4",
     "@ronchalant/react-loading-overlay": "^1.1.0",
     "@wojtekmaj/react-daterange-picker": "^3.1.0",
@@ -21,6 +21,7 @@
     "bpmn-font": "^0.12.1",
     "bpmn-js": "11.5.0",
     "bpmn-js-bpmnlint": "0.20.1",
+    "bpmn-js-color-picker": "^0.7.1",
     "bpmn-js-properties-panel": "^1.26.0",
     "bpmn-js-token-simulation": "0.31.0",
     "bpmn-xml-parser": "1.6.0",
