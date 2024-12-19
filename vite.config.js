@@ -5,4 +5,13 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/react-bpmn",
   plugins: [react()],
+  server: {
+    proxy: {
+      "/diagram": {
+        target: "https://cdn.statically.io",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/diagram/, ""),
+      },
+    },
+  },
 });
