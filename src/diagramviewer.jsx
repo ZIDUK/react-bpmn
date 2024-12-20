@@ -58,7 +58,22 @@ export const BpmnJs = () => {
       .then((bpmnXML) => {
         modeler
           .importXML(bpmnXML)
-          .then(() => console.log("Diagrama cargado"))
+          .then(() => {
+            /* var elementRegistry = modeler.get("elementRegistry");
+
+            // Option 2: Color via BPMN 2.0 Extension
+            var elementToColor = elementRegistry.get(
+              "sid-52EB1772-F36E-433E-8F5B-D5DFD26E6F26"
+            );
+
+            modeling.setColor([elementToColor], {
+              stroke: "green",
+              fill: "rgb(152, 203, 152)",
+            });*/
+
+            console.log("Diagrama cargado");
+          })
+
           .catch((err) => console.error("Error al importar el BPMN", err));
       })
       .catch((err) => console.error("Error al realizar la solicitud", err));
